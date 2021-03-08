@@ -1,0 +1,9 @@
+.jobs-container{
+  display:flex;
+  width: 100%;
+  flex-direction: row;
+}
+.main-container{
+  display: flex;
+  flex-direction: column;
+}

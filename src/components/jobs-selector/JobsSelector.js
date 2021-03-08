@@ -5,9 +5,6 @@ import Timer from "./Timer";
 import "./JobsSelector.css";
 
 class JobsSelector extends Component{
-   constructor(){
-       super();
-   }
 
    render(){
       return (<>

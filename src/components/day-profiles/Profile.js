@@ -1,7 +1,10 @@
 import React from "react";
 
-const Profile = () =>{
-      return <div> This is Profile </div>;
+const Profile = (props) =>{
+return (<tr>
+          <td>{props.profile.name}</td>
+          <td>{props.profile.count}</td>
+    </tr>);
 }
 
 export default Profile;

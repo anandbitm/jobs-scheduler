@@ -1,0 +1,30 @@
+.profiles {
+    border-collapse: collapse;
+    width: 80%;
+    margin:20px auto;
+}
+  
+.profiles  td, .profiles  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.profiles  th:first-child {
+   width:80%
+}
+  
+.profiles  tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+  
+.profiles  tr:hover {
+    background-color: #ddd;
+}
+  
+.profiles  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #6e6c6a;
+    color: white;
+}

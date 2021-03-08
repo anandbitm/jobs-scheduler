@@ -7,18 +7,21 @@ import JobsTimeline from "./components/jobs-timeline/JobsTimeline";
 import './App.css';
 
 class  App extends Component{
-  constructor(){
-    super();
-  }
 
   render(){
     return (
-      <div className="App">
-        <JobsSelector />
-        ===========================
-        <JobsTimeline />
-        ========================
-        <DayProfiles />
+      <div className="main-container">
+        <div className="jobs-container">
+           <div>
+                 <JobsSelector />
+           </div>
+           <div>
+               <JobsTimeline />
+           </div>
+        </div>
+        <div>
+            <DayProfiles />
+        </div>
       </div>
     );
   }
