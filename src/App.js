@@ -11,17 +11,14 @@ class  App extends Component{
   render(){
     return (
       <div className="main-container">
-        <div className="jobs-container">
-           <div>
-                 <JobsSelector />
-           </div>
-           <div>
-               <JobsTimeline />
-           </div>
-        </div>
         <div>
             <DayProfiles />
         </div>
+        <div className="jobs-container">
+            <JobsSelector />
+            <JobsTimeline />
+        </div>
+        
       </div>
     );
   }
