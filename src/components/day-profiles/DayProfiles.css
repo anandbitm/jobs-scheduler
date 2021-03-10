@@ -7,6 +7,7 @@
 .profiles  td, .profiles  th {
     border: 1px solid #ddd;
     padding: 8px;
+    cursor: pointer;
 }
 
 .profiles  th:first-child {
@@ -27,4 +28,8 @@
     text-align: left;
     background-color: #6e6c6a;
     color: white;
+}
+
+.profiles tr.active{
+    font-weight: bold;
 }

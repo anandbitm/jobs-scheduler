@@ -8,13 +8,16 @@ import "./JobsTimeline.css";
 
 class JobsTimeline extends Component{
 
+  getActiveProfile = () =>{
+        return this.props.profiles.length && this.props.profiles.filter((profile)=> profile.isActive ===true)[0];
+  }
    render(){
       return (<div className="jobs-timeline">
                 <div  className="jobs">
                     {
-                        this.props.jobs.length && (
-                            this.props.jobs.map((job)=><Jobs key={`job-${job.id}`} job={job} />)
-                        )
+                        
+                            this.getActiveProfile()['jobs'].map((job)=><Jobs key={`job-${job.id}`} job={job} />)
+                        
                     }
                 </div>
                 <div className="scale">

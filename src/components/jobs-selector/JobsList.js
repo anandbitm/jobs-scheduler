@@ -1,10 +1,18 @@
 import React from "react";
-import constants from "./../../utils/constants";
+
 
 const JobsList = (props) =>{
+
     return (<div className="jobs-list"> 
              <ul>
-                 {constants.JOBS.map((job)=> <li key={job.id} style={{color:job.color}}>{job.name}</li>)}
+                 {props.jobs.map((job)=> (<li 
+                   key={job.id} 
+                   className={props.selectedJob && props.selectedJob.id === job.id ? 'active':''}
+                   style={{color:job.color}}
+                   onClick ={()=>props.handleJob(job)}
+                   >
+                    {job.name}
+                   </li>))}
              </ul>
          </div>);
 }

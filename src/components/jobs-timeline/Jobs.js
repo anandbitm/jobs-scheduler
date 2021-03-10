@@ -4,16 +4,23 @@ import getTimeDiff from "./../../utils/utils";
 const Jobs = (props) =>{
 
     const widthPerUnit = 40;
-    const start = props.job.start.split(":");
-    const left = widthPerUnit*(parseInt(start[0]) + (parseInt(start[1])/60))+"px" ;
+    const startHours = Math.floor(props.job.start / 60);
+    const startMinutes = props.job.start - (startHours*60);
+    const left = widthPerUnit*(startHours + (startMinutes/60))+"px" ;
+
     const width = getTimeDiff(props.job.start,props.job.end)*widthPerUnit+"px";
 
     return (<div 
-            className={`job-area`} 
-            style={{backgroundColor:props.job.color,
-                    left:left,
-                    width:width}
-            }> 
+                className={`job-area`} 
+                data-start = { props.job.start}
+                data-end =  { props.job.end}
+                data-job = {props.job.name}
+                
+                style={{backgroundColor:props.job.color,
+                        left:left,
+                        width:width}
+                }
+             > 
             <span className="job">{props.job.name}</span> 
            </div>);
 }

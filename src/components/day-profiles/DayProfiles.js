@@ -6,6 +6,20 @@ import "./DayProfiles.css";
 
 class DayProfiles extends Component{
 
+  
+   handleActiveProfile = (profileId) =>{
+       const profiles = this.props.profiles.map((profile)=>{
+            if(profile.id === profileId){
+                profile.isActive = true;
+            }else{
+                profile.isActive = false;
+            }
+            return profile;
+       });
+
+       this.props.updateProfile(profiles);
+   }
+
    render(){
       return (<>
         {
@@ -19,7 +33,7 @@ class DayProfiles extends Component{
                     </tr>
                 </thead>
                 <tbody>
-                   {this.props.profiles.map((profile)=> <Profile key={`profile-${profile.id}`} profile={profile} />) } 
+                   {this.props.profiles.map((profile)=> <Profile key={`profile-${profile.id}`} profile={profile} handleActive={this.handleActiveProfile} />) } 
                 </tbody>
             </table>)
          }
@@ -34,7 +48,10 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return {
         addProfile: (profile) =>{
-              dispatch({type:"ADD_PROFILE",payload:profile})
+              dispatch({type:"ADD_PROFILE",payload:profile});
+        },
+        updateProfile : (profile) =>{
+            dispatch({type:"UPDATE_PROFILE",payload:profile});
         }
     }
 }
