@@ -81,7 +81,11 @@ class JobsSelector extends Component{
    }
 
    selectJob = (job) =>{
-     this.setState({selectedJob:job});
+      const jobs = this.getActiveProfile()['jobs'];
+      let start = jobs.filter((val)=>val.id===job.id)[0]?.start || 0;
+      let hours = Math.floor(start / 60);
+      let minutes = (start - hours*60 );
+      this.setState({selectedJob:job,hours:hours.toString().padStart(2, "0"),minutes:minutes.toString().padStart(2, "0")});
    }
 
    handleHours = (isUp) =>{
