@@ -43,17 +43,37 @@ class JobsSelector extends Component{
    }
 
    getStartAndEndTime = () =>{
+      
       const jobs = this.getActiveProfile()['jobs'];
 
       let start =  (60*this.state.hours)+ (1*this.state.minutes);
       let end = 24*60;
 
+      let needUpdate = false;
+
       for(let i =0;i<jobs.length;i++){
-            if(this.state.selectedJob.id !== jobs[i].id && end > jobs[i].start){
-               end =  jobs[i].start;
+            if(this.state.selectedJob.id !== jobs[i].id){
+               if(start > jobs[i].start){
+                  jobs[i].end = start;
+                  needUpdate = true;
+                  break;
+               }else if(end > jobs[i].start){
+                  end =  jobs[i].start;
+               }
             }
       }
 
+      if(needUpdate){
+         const profiles = this.props.profiles.map((profile)=>{
+            if(profile.isActive){
+                profile.jobs = jobs;
+            }
+            return profile;
+         });
+   
+         this.props.updateJob(profiles);
+      }
+     
       return ({
           start:start,
           end:end
@@ -130,6 +150,9 @@ const mapDispatchToProps = (dispatch) =>{
       },
       deleteJob : (jobid) =>{
          dispatch({type:"DELETE_JOB",payload:jobid});
+      },
+      updateJob : (job) =>{
+         dispatch({type:"UPDATE_JOB",payload:job});
       }
    }
 
