@@ -84,9 +84,20 @@ class JobsSelector extends Component{
           return this.props.profiles.length && this.props.profiles.filter((profile)=> profile.isActive ===true)[0];
    }
 
+   cancel =() =>{
+      this.setState({selectedJob:null});
+   }
+
+   delete = () =>{
+      if(this.state.selectedJob){
+         this.props.deleteJob(this.state.selectedJob.id);
+         this.cancel();
+      } 
+   }
+
    render(){
       return (<div className="jobs-selector">
-                  <div className="jobs-header">Jobs ({this.getActiveProfile()['name']}) <button className="delete">Delete</button></div>
+                  <div className="jobs-header">Jobs ({this.getActiveProfile()['name']}) <button className="delete" onClick={this.delete}> Delete </button></div>
                   <div className="main-content">
                      <JobsList 
                          handleJob={this.selectJob} 
@@ -101,7 +112,7 @@ class JobsSelector extends Component{
                      />
                   </div>
                   <div className="jobs-footer">
-                     <button className="cancel">Cancel</button><button className="done" onClick={this.addJobToTimeline}>Done</button>
+                     <button className="cancel" onClick={this.cancel}>Cancel</button><button className="done" onClick={this.addJobToTimeline}>Done</button>
                   </div>
              </div>);
    }
@@ -116,6 +127,9 @@ const mapDispatchToProps = (dispatch) =>{
    return {
       addJob : (job) =>{
          dispatch({type:"ADD_JOB",payload:job});
+      },
+      deleteJob : (jobid) =>{
+         dispatch({type:"DELETE_JOB",payload:jobid});
       }
    }
 

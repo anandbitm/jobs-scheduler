@@ -15,13 +15,18 @@ const Jobs = (props) =>{
                 data-start = { props.job.start}
                 data-end =  { props.job.end}
                 data-job = {props.job.name}
+                title = {props.job.name}
                 
                 style={{backgroundColor:props.job.color,
                         left:left,
                         width:width}
                 }
              > 
-            <span className="job">{props.job.name}</span> 
+
+            {
+               getTimeDiff(props.job.start,props.job.end) >= 1  && <span className="job">{props.job.name}</span> 
+            }
+            
            </div>);
 }
 

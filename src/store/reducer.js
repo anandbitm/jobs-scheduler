@@ -1,4 +1,4 @@
-import {ADD_PROFILE,UPDATE_PROFILE,ADD_JOB} from "./actionTypes";
+import {ADD_PROFILE,UPDATE_JOB,ADD_JOB,DELETE_JOB} from "./actionTypes";
 
 const defaultState = {
     profiles:[
@@ -25,7 +25,7 @@ const reducer = (state = defaultState,action) =>{
                  ...state,
                  profiles:[...state.profiles,action.payload]
              }
-         case UPDATE_PROFILE:
+         case UPDATE_JOB:
              return {
                  ...state,
                  profiles:[...action.payload]
@@ -35,10 +35,28 @@ const reducer = (state = defaultState,action) =>{
                 ...state,
                 profiles:[...action.payload]
             }
+        case DELETE_JOB:
+
+           const profiles = [...state.profiles].map((profile)=>{
+                if(profile.isActive){
+                    for(let i=0;i<profile.jobs.length;i++){
+                        if(profile.jobs[i].id === action.payload){
+                           profile.jobs.splice(i,1);
+                        }
+                    }
+                }
+                return profile;
+            });
+
+            return {
+                ...state,
+                profiles: profiles
+            }
          default:
              return state;
     }
        
 }
+
 
 export default reducer;

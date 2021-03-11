@@ -4,7 +4,7 @@
 ******************************************************/
 
  const constants = {
-    KeY : ``,
+    KEY : ``,
     API_URL:``,
     JOBS:[{id:"job1",name:"job1",color:"#b8860b"},
          {id:"job2",name:"job2",color:"#800080"},

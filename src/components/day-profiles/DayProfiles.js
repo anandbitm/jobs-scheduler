@@ -17,7 +17,7 @@ class DayProfiles extends Component{
             return profile;
        });
 
-       this.props.updateProfile(profiles);
+       this.props.updateJob(profiles);
    }
 
    render(){
@@ -50,8 +50,8 @@ const mapDispatchToProps = (dispatch) =>{
         addProfile: (profile) =>{
               dispatch({type:"ADD_PROFILE",payload:profile});
         },
-        updateProfile : (profile) =>{
-            dispatch({type:"UPDATE_PROFILE",payload:profile});
+        updateJob : (profile) =>{
+            dispatch({type:"UPDATE_JOB",payload:profile});
         }
     }
 }
