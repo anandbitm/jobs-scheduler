@@ -11,12 +11,16 @@ class JobsTimeline extends Component{
   getActiveProfile = () =>{
         return this.props.profiles.length && this.props.profiles.filter((profile)=> profile.isActive ===true)[0];
   }
+
+  handleActiveJob = (job) =>{
+      this.props.updateActiveJob(job);
+  }
    render(){
       return (<div className="jobs-timeline">
                 <div  className="jobs">
                     {
                         
-                            this.getActiveProfile()['jobs'].map((job)=><Jobs key={`job-${job.id}`} job={job} />)
+                            this.getActiveProfile()['jobs'].map((job)=><Jobs handleActiveJob = {this.handleActiveJob} key={`job-${job.id}`} job={job} />)
                         
                     }
                 </div>
@@ -33,8 +37,8 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
        return {
-           addJob : (job) =>{
-            dispatch({type:"ADD_JOB",payload:job});
+           updateActiveJob:(job)=>{
+               dispatch({type:"UPDATE_ACTIVE_JOB",payload:job});
            }
        }
 }

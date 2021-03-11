@@ -21,6 +21,7 @@ const Jobs = (props) =>{
                         left:left,
                         width:width}
                 }
+                onClick={()=>props.handleActiveJob(props.job)}
              > 
 
             {

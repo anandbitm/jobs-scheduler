@@ -1,4 +1,5 @@
-import { ADD_PROFILE, UPDATE_JOB, ADD_JOB, DELETE_JOB } from "./actionTypes"
+import { ADD_PROFILE, UPDATE_JOB, ADD_JOB, DELETE_JOB ,UPDATE_ACTIVE_JOB} from "./actionTypes";
+import constants from "./../utils/constants";
 
 const defaultState = {
   profiles: [
@@ -15,6 +16,7 @@ const defaultState = {
       jobs: [],
     },
   ],
+  activeJob:constants.JOBS[0]
 }
 
 const reducer = (state = defaultState, action) => {
@@ -51,6 +53,11 @@ const reducer = (state = defaultState, action) => {
         profiles: profiles,
       }
     }
+    case UPDATE_ACTIVE_JOB:
+      return {
+            ...state,
+            activeJob: action.payload,
+          }
     default:
       return state
   }

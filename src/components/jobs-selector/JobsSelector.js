@@ -12,12 +12,12 @@ class JobsSelector extends Component{
       super(props);
 
       this.state = {
-           selectedJob:null,
+           selectedJob:this.props.activeJob,
            hours:"00",
            minutes:"00"
       }
    }
-  
+
    addJobToTimeline = () =>{
       if(this.state.selectedJob){
          let jobtoAdd = {...this.state.selectedJob,...this.getStartAndEndTime()};
@@ -86,6 +86,7 @@ class JobsSelector extends Component{
       let hours = Math.floor(start / 60);
       let minutes = (start - hours*60 );
       this.setState({selectedJob:job,hours:hours.toString().padStart(2, "0"),minutes:minutes.toString().padStart(2, "0")});
+      this.props.updateActiveJob(job);
    }
 
    handleHours = (isUp) =>{
@@ -110,6 +111,7 @@ class JobsSelector extends Component{
 
    cancel =() =>{
       this.setState({selectedJob:null});
+      this.props.updateActiveJob(null);
    }
 
    delete = () =>{
@@ -126,7 +128,7 @@ class JobsSelector extends Component{
                      <JobsList 
                          handleJob={this.selectJob} 
                          jobs = {constants.JOBS}
-                         selectedJob = {this.state.selectedJob}
+                         selectedJob = {this.props.activeJob}
                      />
                      <Timer 
                         hours={this.state.hours} 
@@ -157,7 +159,10 @@ const mapDispatchToProps = (dispatch) =>{
       },
       updateJob : (job) =>{
          dispatch({type:"UPDATE_JOB",payload:job});
-      }
+      },
+      updateActiveJob:(job)=>{
+         dispatch({type:"UPDATE_ACTIVE_JOB",payload:job});
+     }
    }
 
 }
