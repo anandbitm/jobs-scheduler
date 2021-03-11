@@ -53,7 +53,7 @@ class JobsSelector extends Component{
 
       for(let i =0;i<jobs.length;i++){
             if(this.state.selectedJob.id !== jobs[i].id){
-               if(start > jobs[i].start){
+               if(start >= jobs[i].start){
                   jobs[i].end = start;
                   needUpdate = true;
                   break;
