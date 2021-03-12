@@ -1,13 +1,12 @@
-import React , {Component} from "react";
-import { connect } from "react-redux";
+import React,{ Component } from "react"
+import { connect } from "react-redux"
 
-import Profile from "./Profile";
-import "./DayProfiles.css";
+import Profile from "./Profile"
+import "./DayProfiles.css"
 
 class DayProfiles extends Component{
-
   
-   handleActiveProfile = (profileId) =>{
+    handleActiveProfile = (profileId) =>{
        const profiles = this.props.profiles.map((profile)=>{
             if(profile.id === profileId){
                 profile.isActive = true;
